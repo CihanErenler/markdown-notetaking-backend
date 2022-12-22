@@ -33,13 +33,20 @@ export const register = async (req, res) => {
 		lastname: body.lastname,
 		email: body.email,
 		password: hashedPass,
+		data: body.data,
 	});
 
 	try {
 		await user.save();
+		const tempUser = {
+			nama: body.name,
+			lastname: body.lastname,
+			email: body.email,
+		};
+		const token = createJWT(tempUser);
 		return res.status(200).json({
-			success: true,
-			message: "OK",
+			...tempUser,
+			token,
 		});
 	} catch (error) {
 		res.status(200).json(error);
@@ -61,7 +68,6 @@ export const login = async (req, res) => {
 
 	// Check if the email exist
 	const user = await User.findOne({ email: body.email });
-	console.log(user);
 	if (!user) {
 		return res.status(400).json({ message: "Email does not exists" });
 	}
@@ -81,6 +87,7 @@ export const login = async (req, res) => {
 				lastname: user.lastname,
 				email: body.email,
 				token,
+				data: user.data,
 			},
 			message: "Logged in!",
 		});
