@@ -13,7 +13,7 @@ const Folder = new Schema({
 	items: [File],
 });
 
-const Tag = new Schema({
+export const Tag = new Schema({
 	name: String,
 	color: String,
 });

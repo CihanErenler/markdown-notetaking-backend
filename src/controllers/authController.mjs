@@ -1,10 +1,10 @@
 import User from "../models/User.mjs";
+import Code from "../models/Code.mjs";
 import { signupValidator, signinValidator } from "../auth/validation.mjs";
 import { createJWT, comparePasswords, hashPassword } from "../auth/auth.mjs";
 
 export const register = async (req, res) => {
 	const body = req.body;
-	console.log(body);
 
 	// validate before continue
 	const { error } = signupValidator(body);
@@ -37,7 +37,16 @@ export const register = async (req, res) => {
 	});
 
 	try {
-		await user.save();
+		const response = await user.save();
+		const dataId = response.data.files.items[0].items[0].id;
+		const title = response.data.files.items[0].items[0].name;
+		const code = new Code({
+			dataId,
+			title,
+			code: "### Title",
+			tags: [],
+		});
+		await code.save();
 		const tempUser = {
 			nama: body.name,
 			lastname: body.lastname,
@@ -55,11 +64,9 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
 	const body = req.body;
-	console.log(body);
 
 	//validate before continue
 	const { error } = signinValidator(body);
-	console.log(error);
 	if (error) {
 		return res.status(400).json({
 			message: error.details[0].message,
