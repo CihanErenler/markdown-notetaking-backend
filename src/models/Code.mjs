@@ -1,11 +1,12 @@
 import mongoose from "mongoose";
-import { Tag } from "./Data.mjs";
 
 const Code = mongoose.Schema({
 	dataId: String,
 	title: String,
 	code: String,
-	tag: [Tag],
+	createdAt: Date,
+	updatedAt: Date,
+	tags: [String],
 });
 
 export default mongoose.model("Code", Code);

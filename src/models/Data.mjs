@@ -14,6 +14,7 @@ const Folder = new Schema({
 });
 
 export const Tag = new Schema({
+	id: String,
 	name: String,
 	color: String,
 });

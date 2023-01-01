@@ -2,17 +2,19 @@ import express from "express";
 const router = express.Router();
 
 import {
-  getData,
-  getCode,
-  createFolder,
-  createFile,
-  updateCode,
+	getData,
+	getCode,
+	handleFiles,
+	createFile,
+	updateCode,
+	deleteCode,
 } from "../controllers/mainController.mjs";
 
 router.post("/data", getData);
 router.get("/code/:id", getCode);
-router.patch("/code/update", updateCode);
-router.post("/folders", createFolder);
+router.post("/code/update", updateCode);
+router.post("/folders", handleFiles);
 router.post("/files", createFile);
+router.delete("/code/:id", deleteCode);
 
 export default router;

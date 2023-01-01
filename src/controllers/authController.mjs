@@ -40,10 +40,13 @@ export const register = async (req, res) => {
 		const response = await user.save();
 		const dataId = response.data.files.items[0].items[0].id;
 		const title = response.data.files.items[0].items[0].name;
+		const date = new Date();
 		const code = new Code({
 			dataId,
 			title,
 			code: "### Title",
+			createdAt: date,
+			updatedAt: date,
 			tags: [],
 		});
 		await code.save();
