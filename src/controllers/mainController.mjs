@@ -16,7 +16,7 @@ export const updateCode = async (req, res, next) => {
 	const body = req.body;
 	try {
 		console.log(body.code.tags);
-		const response = await Code.findOneAndUpdate(
+		await Code.findOneAndUpdate(
 			{ dataId: body.code.dataId },
 			{
 				title: body.code.title,
@@ -63,6 +63,21 @@ export const handleFiles = async (req, res, next) => {
 		);
 		res.status(200);
 		res.json({ message: "user updated" });
+	} catch (error) {
+		next(new Error(error));
+	}
+};
+
+export const handleTags = async (req, res, next) => {
+	const data = req.body;
+	console.log("tags ==> ", data);
+	try {
+		await User.findOneAndUpdate(
+			{ email: data.email },
+			{ $set: { "data.tags": data.data } }
+		);
+		res.status(200);
+		res.json({ message: "Tags updated" });
 	} catch (error) {
 		next(new Error(error));
 	}

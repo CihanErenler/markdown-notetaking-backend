@@ -8,9 +8,11 @@ import {
 	createFile,
 	updateCode,
 	deleteCode,
+	handleTags,
 } from "../controllers/mainController.mjs";
 
 router.post("/data", getData);
+router.post("/tags", handleTags);
 router.get("/code/:id", getCode);
 router.post("/code/update", updateCode);
 router.post("/folders", handleFiles);

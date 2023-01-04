@@ -17,6 +17,7 @@ export const Tag = new Schema({
 	id: String,
 	name: String,
 	color: String,
+	items: [String],
 });
 
 export const Context = new Schema({
