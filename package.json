@@ -1,25 +1,35 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.mjs",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./src/index.mjs"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@hapi/joi": "^17.1.1",
-    "bcrypt": "^5.1.0",
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.7.4"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.20"
-  }
+	"name": "server",
+	"version": "1.0.0",
+	"description": "",
+	"main": "server.mjs",
+	"scripts": {
+		"dev": "nodemon ./src/server.mjs",
+		"build": "rm -rf ./dist && webpack --mode production",
+		"start": "node ./dist/server.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@hapi/joi": "^17.1.1",
+		"bcrypt": "^5.1.0",
+		"cors": "^2.8.5",
+		"dotenv": "^16.0.3",
+		"express": "^4.18.2",
+		"jsonwebtoken": "^8.5.1",
+		"mongoose": "^6.7.4"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.20.12",
+		"@babel/preset-env": "^7.20.2",
+		"aws-crt": "^1.15.5",
+		"babel": "^6.23.0",
+		"babel-core": "^6.26.3",
+		"babel-loader": "^9.1.2",
+		"nodemon": "^2.0.20",
+		"webpack": "^5.75.0",
+		"webpack-cli": "^5.0.1",
+		"webpack-node-externals": "^3.0.0"
+	}
 }
